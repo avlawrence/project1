@@ -1,0 +1,123 @@
+---
+title: "Untitled"
+author: "Ashley Lawrence"
+date: "October 4, 2015"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+data1 <- read.table('/Users/avlawrence/Desktop/project1/r_project/output/combined_gapMinder.tsv', header=T)
+
+
+
+#using a plot script for multiple xs and ys
+x<-data1[data1$country=='Niger',]$year
+y<-data1[data1$country=='Niger',]$gdpPercap
+lmdta <- data.frame(cbind(x,y))
+
+xlabel <- "Year"
+ylabel <- "Percapita GDP"
+main <- "Yearly GDP"
+sub <-"Niger"
+
+plot(x,y, 
+     font= 3, 
+     xlab='', 
+     ylab='', 
+     pch=16, 
+     col="red")
+abline(lm(lmdta$y~lmdta$x), 
+       lty=3, 
+       col="green", 
+       lwd=4)
+title(main=main, 
+      xlab=xlabel, 
+      ylab=ylabel,
+      sub=sub,
+      font= 2, 
+      family="Times New Roman")
+
+
+
+
+
+x<-data1[data1$country=='Afghanistan',]$year
+y<-data1[data1$country=='Afghanistan',]$gdpPercap
+lmdta <- data.frame(cbind(x,y))
+
+xlabel <- "Year"
+ylabel <- "Percapita GDP"
+main <- "Yearly GDP"
+sub <- "Afghanistan"
+
+plot(x,y, 
+     font= 3, 
+     xlab='', 
+     ylab='', 
+     pch=16, 
+     col="red")
+abline(lm(lmdta$y~lmdta$x), 
+       lty=3, 
+       col="green", 
+       lwd=4)
+title(main=main, 
+      xlab=xlabel, 
+      ylab=ylabel, 
+      sub=sub,
+      font= 2, 
+      family="Times New Roman")
+
+x<-data1[data1$country=='China',]$year
+y<-data1[data1$country=='China',]$gdpPercap
+lmdta <- data.frame(cbind(x,y))
+
+xlabel <- "Year"
+ylabel <- "Percapita GDP"
+main <- "Yearly GDP"
+sub <- "China"
+
+plot(x,y, 
+     font= 3, 
+     xlab='', 
+     ylab='', 
+     pch=16, 
+     col="red")
+abline(lm(lmdta$y~lmdta$x), 
+       lty=3, 
+       col="green", 
+       lwd=4)
+title(main=main, 
+      xlab=xlabel, 
+      ylab=ylabel, 
+      sub=sub,
+      font= 2, 
+      family="Times New Roman")
+
+```
+
+China's GDP seems to be increasing exponentially whereas Niger and Afghanistan's GDP are decreasing. Niger's GDP is decreasing more dramatically than Afghanistan's GDP. 
+
+Life Expectancy by Country
+```{r, echo=F}
+descriptivesdta <-c()
+descriptivesdta$country <- c("Niger", "Afghanistan", "China")
+descriptivesdta$min <- c(min(data1[data1$country=="Niger",]$lifeExp), min(data1[data1$country=="Afghanistan",]$lifeExp), min(data1[data1$country=="China",]$lifeExp))
+descriptivesdta$max <- c(max(data1[data1$country=="Niger",]$lifeExp), max(data1[data1$country=="Afghanistan",]$lifeExp), max(data1[data1$country=="China",]$lifeExp))
+descriptivesdta$mean <- c(mean(data1[data1$country=="Niger",]$lifeExp), mean(data1[data1$country=="Afghanistan",]$lifeExp), mean(data1[data1$country=="China",]$lifeExp))
+descriptivesdtaframe <- data.frame(descriptivesdta)
+descriptivesdtaframe
+```
+
+China has the highest life expectancy of the three countries. 
